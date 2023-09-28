@@ -4,9 +4,9 @@ require("dotenv").config();
 const Video = require("../models/Upload");
 
 cloudinary.config({
-  cloud_name: "ubongedem78",
-  api_key: "233473746799948",
-  api_secret: "BM4aBSxRmQOU_vhaO72QskFirKE",
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINAY_API_SECRET,
 });
 
 const storage = multer.memoryStorage();
