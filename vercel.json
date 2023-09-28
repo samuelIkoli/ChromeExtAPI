@@ -1,12 +1,17 @@
 {
-  "routes": [
+  "version": 2,
+  "builds": [
     {
-      "src": "/api/.*",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "src": "index.js",
+      "use": "@now/node-server"
     }
+  ],
+  "routes": [
+    { "src": "/api/upload", "dest": "/index.js" },
+    { "src": "/api/videos/:videoId", "dest": "/index.js" },
+    { "src": "/api/videos", "dest": "/index.js" },
+    { "src": "/api/videos/:videoId", "dest": "/index.js" },
+    { "src": "/api/search", "dest": "/index.js" },
+    { "src": "/", "dest": "/index.js" }
   ]
 }
