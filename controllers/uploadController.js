@@ -1,5 +1,5 @@
 const cloudinary = require("cloudinary").v2;
-const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 require("dotenv").config();
 const Video = require("../models/Upload");
 
@@ -9,8 +9,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "uploads",
+  },
+});
 
 const uploadVideo = async (req, res) => {
   try {
@@ -22,7 +26,7 @@ const uploadVideo = async (req, res) => {
 
     const cloudinaryResponse = await cloudinary.uploader.upload(
       //upload to cloudinary
-      req.file.buffer,
+      req.file.path,
       {
         folder: "uploads",
       }
