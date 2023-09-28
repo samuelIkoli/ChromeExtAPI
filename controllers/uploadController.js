@@ -22,7 +22,7 @@ const uploadVideo = async (req, res) => {
 
     const cloudinaryResponse = await cloudinary.uploader.upload(
       //upload to cloudinary
-      req.file.path,
+      req.file.buffer,
       {
         folder: "uploads",
       }
