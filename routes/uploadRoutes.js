@@ -3,12 +3,22 @@ const router = express.Router();
 const uploadController = require("../controllers/uploadController");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
-const { uploadVideo } = uploadController;
+const { uploadVideo, getAllVideos, getSingleVideo, deleteVideo, searchVideo } =
+  uploadController;
 
 // upload video: POST
-router.post("/", upload.single("file"), uploadVideo);
+router.post("/upload", upload.single("file"), uploadVideo);
 
-router.get("/", upload.single("file"), (req, res) => {
+router.get("/", (req, res) => {
   res.send("Ubongggggggggggg");
 });
+
+router.get("/videos/:videoId", getSingleVideo);
+
+router.get("/videos", getAllVideos);
+
+router.delete("/videos/:videoId", deleteVideo);
+
+router.get("/search", searchVideo);
+
 module.exports = router;
