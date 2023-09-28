@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "name": "index",
   "builds": [
     {
       "src": "index.js",
@@ -7,11 +8,9 @@
     }
   ],
   "routes": [
-    { "src": "/api/upload", "dest": "/index.js" },
-    { "src": "/api/videos/:videoId", "dest": "/index.js" },
-    { "src": "/api/videos", "dest": "/index.js" },
-    { "src": "/api/videos/:videoId", "dest": "/index.js" },
-    { "src": "/api/search", "dest": "/index.js" },
-    { "src": "/", "dest": "/index.js" }
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
   ]
 }
