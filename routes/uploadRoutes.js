@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 const uploadController = require("../controllers/uploadController");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 const { uploadVideo, getAllVideos, getSingleVideo, deleteVideo, searchVideo } =
   uploadController;
 
+// Configure multer for file uploads
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 // upload video: POST
-router.post("/upload", upload.single("file"), uploadVideo);
+router.post("/upload", upload.single("video"), uploadVideo);
 
 router.get("/", (req, res) => {
   res.send("Ubongggggggggggg");
